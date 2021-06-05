@@ -5,6 +5,9 @@ import {
 } from "react-router-dom";
 import { useAuth} from "../Conponent/authority.js"
 
+import {Button} from "antd"
+import 'antd/dist/antd.css';
+
 export default function LoginPage() {
     let history = useHistory();
     let location = useLocation();
@@ -49,7 +52,7 @@ export default function LoginPage() {
                 </div>
             </div>
             <div align="center">
-                <button onClick={login}>Log in</button>
+                <Button onClick={login}>Log in</Button>
             </div>
         </div>
     );

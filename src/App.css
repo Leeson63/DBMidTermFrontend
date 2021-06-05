@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css';
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.demo-nav {
+  height: 30px;
+  margin-bottom: 16px;
+  line-height: 30px;
+  background: #f8f8f8;
+}
+
+.demo {
+  margin: 16px;
+}
+
+.demo-nav a {
+  padding: 0 8px;
+  line-height: 30px;
 }

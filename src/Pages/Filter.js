@@ -2,6 +2,7 @@ import React, { useContext, createContext, useState, useEffect } from "react";
 import {useResult} from "./Result.js"
 import {useHistory} from "react-router-dom"
 import axios from "axios"
+import { Checkbox, Button } from 'antd';
 
 const reqList = createContext(new Set());
 
@@ -22,8 +23,8 @@ function NameCheckBox(props) {
     
     return (
         <>
-        <input type="checkbox" {...props} onChange={handleOnChange} />
-        <label>{props.text}</label>
+        <Checkbox {...props} onChange={handleOnChange} />
+        <label>{"  " + props.text}</label>
         </>
     );
 }
@@ -139,7 +140,7 @@ export default function Filter() {
             <div>Filter Page</div>
             <CheckBoxRow textlist={categories} />
             <div>
-                <button onClick={handleClick}>apply</button>
+                <Button onClick={handleClick}>apply</Button>
             </div>
         </reqList.Provider>
     )

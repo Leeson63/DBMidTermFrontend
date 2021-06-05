@@ -7,6 +7,7 @@ import {
   Redirect,
   useHistory,
 } from "react-router-dom";
+
 import { useAuth, ProvideAuth } from "./Conponent/authority.js"
 import Person from "./Pages/Person"
 import Filter from "./Pages/Filter"
@@ -15,10 +16,12 @@ import Search from "./Pages/Search"
 import LoginPage from "./Pages/Login"
 import Topic from "./Pages/Topic"
 
+import "./App.css"
+
 export default function AuthExample() {
   const mystyle = {
       color: "white",
-      backgroundColor: "DodgerBlue",
+      //backgroundColor: "DodgerBlue",
       padding: "10px",
       fontFamily: "Arial"
     };
@@ -27,19 +30,13 @@ export default function AuthExample() {
     <ProvideAuth>
       <ProvideResult>
         <Router>
-          <div>
+          <div className="demo">
             <AuthButton />
 
-            <div style={mystyle}>
-              <span style={{margin:"10px"}}>
+            <div className="demo-nav">
                 <Link to="/Search">Search</Link>
-              </span>
-              <span style={{margin:"10px"}}>
                 <Link to="/Filter">Filter</Link>
-              </span>
-              <span style={{margin:"10px"}} >
                 <Link to="/Person">Personal Information</Link>
-              </span>
             </div>
 
             <Switch>
