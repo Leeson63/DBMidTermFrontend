@@ -1,25 +1,106 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+} from "react-router-dom";
+import { useAuth, ProvideAuth } from "./Conponent/authority.js"
+import Person from "./Pages/Person"
+import Filter from "./Pages/Filter"
+import Result, { ProvideResult } from "./Pages/Result"
+import Search from "./Pages/Search"
+import LoginPage from "./Pages/Login"
+import Topic from "./Pages/Topic"
 
-function App() {
+export default function AuthExample() {
+  const mystyle = {
+      color: "white",
+      backgroundColor: "DodgerBlue",
+      padding: "10px",
+      fontFamily: "Arial"
+    };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <ProvideAuth>
+      <ProvideResult>
+        <Router>
+          <div>
+            <AuthButton />
+
+            <div style={mystyle}>
+              <span style={{margin:"10px"}}>
+                <Link to="/Search">Search</Link>
+              </span>
+              <span style={{margin:"10px"}}>
+                <Link to="/Filter">Filter</Link>
+              </span>
+              <span style={{margin:"10px"}} >
+                <Link to="/Person">Personal Information</Link>
+              </span>
+            </div>
+
+            <Switch>
+              <Route path="/login" component={LoginPage}/>
+              <PrivateRoute path="/Person">
+                <Person/>
+              </PrivateRoute>
+              <Route path="/Search" component={Search}/>
+              <Route path="/Result" component={Result}/>
+              <Route path="/Filter" component={Filter}/>
+              <Route path="/TopicPage/:topic_id" component={Topic}/>
+
+            </Switch>
+          </div>
+        </Router>
+      </ProvideResult>
+    </ProvideAuth>
   );
 }
 
-export default App;
+
+// 登出的按钮
+function AuthButton() {
+  let history = useHistory();
+  let auth = useAuth();
+
+  return auth.user ? (
+    <p>
+      Welcome!{" "}
+      <button
+        onClick={() => {
+          auth.signout(() => history.push("/"));
+        }}
+      >
+        Sign out
+      </button>
+    </p>
+  ) : (
+    <p>You are not logged in.</p>
+  );
+}
+
+// A wrapper for <Route> that redirects to the login
+// screen if you're not yet authenticated.
+function PrivateRoute({ children, ...rest }) {
+  let auth = useAuth();
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        auth.user ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
