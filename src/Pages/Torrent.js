@@ -144,7 +144,7 @@ export default function TorrentPage(props) {
                     json=>
                     <>
                         <MyComment name={json.user__name} content={json.content}/>
-                        <Rate disabled defaultValue={json.score}/>
+                        <Rate disabled value={json.score}/>
                     </>
                 )
             }

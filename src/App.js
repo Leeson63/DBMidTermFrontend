@@ -17,6 +17,7 @@ import LoginPage from "./Pages/Login"
 import Topic from "./Pages/Topic"
 import Torrent from "./Pages/Torrent"
 import Upload from "./Pages/Upload"
+import Post from "./Pages/Post"
 
 import "./App.css"
 
@@ -75,7 +76,8 @@ return (
                 <Menu.Item key="1"> <Link to="/Search">Search</Link></Menu.Item>
                 <Menu.Item key="2"> <Link to="/Filter">Filter</Link></Menu.Item>
                 <Menu.Item key="3"> <Link to="/Upload">Upload</Link> </Menu.Item>
-                <Menu.Item key="4"> <Link to="/Person">Personal Information</Link> </Menu.Item>
+                <Menu.Item key="4"> <Link to="/Post">Post</Link> </Menu.Item>
+                <Menu.Item key="5"> <Link to="/Person">Account</Link> </Menu.Item>
               </Menu>
             </Header>
             <Content style={{ padding: '10px 50px' }}>
@@ -101,6 +103,9 @@ return (
                 </PrivateRoute>
                 <PrivateRoute path="/Upload">
                   <Upload />
+                </PrivateRoute>
+                <PrivateRoute path="/Post">
+                  <Post />
                 </PrivateRoute>
                 <PrivateRoute path="/">
                   <Person />
@@ -131,7 +136,7 @@ function AuthButton() {
         onClick={() => {
           auth.signout(() => history.push("/"));
         }}
-      ghost>
+      danger>
         logout
       </Button>
     </p>
