@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios'
 
 export default function Person() {
     const [text, setText] = useState({});
+
+    useEffect(
     axios.get("/api/account/")
     .then (
         function(response) {
@@ -18,7 +20,7 @@ export default function Person() {
         function(e) {
             alert(e);
         }
-    )
+    ), [])
     return (
         <>
         <h1>Acount Infos</h1>

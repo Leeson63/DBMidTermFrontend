@@ -53,7 +53,7 @@ export default function Result() {
     //)
     return (
         <>
-        <div>Result Page</div>
+        <h1>Topics</h1>
         <ul>{listItems}</ul>
         </>
     )

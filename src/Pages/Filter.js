@@ -123,7 +123,9 @@ export default function Filter() {
                         result.updateResult({
                             page: 1,
                             totPage: ret.totPage,
-                            items: ret.topics
+                            items: ret.topics,
+                            categories : requestjson.categories,
+                            searchstring : "",
                         })
                         //console.log(result.result);
                         history.push("/Result");
