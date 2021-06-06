@@ -54,3 +54,23 @@
   padding: 0 8px;
   line-height: 30px;
 }
+
+.site-layout-content {
+  min-height: 280px;
+  padding: 48px;
+  background: #fff;
+}
+#components-layout-demo-top .logo {
+  float: left;
+  width: 120px;
+  height: 21px;
+  margin: 0px 12px 16px 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+.ant-row-rtl #components-layout-demo-top .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+.site-page-header {
+  border: 1px 0 0 -30px solid rgb(235, 237, 240);
+}

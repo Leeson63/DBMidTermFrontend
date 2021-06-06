@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {Button, Tooltip, Space} from "antd";
+import {SearchOutlined} from '@ant-design/icons';
 import {
   useHistory,
 } from "react-router-dom";
@@ -30,11 +32,23 @@ export default function Search(props) {
         history.push("/Result");
     }
 
+    /*
     return (
         <>
-        <div>Search Page</div>
+        <h1>Search Page</h1>
         <input onChange={handleOnChange} value={searchText}/>
         <button onClick={handleOnClick}> Search </button>
         </>
-    )
+    )*/
+    return (
+            <>
+            <h1>Search Page</h1>
+            <Space>
+            <input onChange={handleOnChange} value={searchText}/>
+            <Tooltip title="search">
+              <Button onClick={handleOnClick} type="primary" shape="circle" icon={<SearchOutlined />} />
+            </Tooltip>
+            </Space>
+            </>
+        )
 }
