@@ -4,7 +4,7 @@ import axios from 'axios'
 export default function Person() {
     const [text, setText] = useState({});
 
-    useEffect(
+    //useEffect(
     axios.get("/api/account/")
     .then (
         function(response) {
@@ -20,7 +20,7 @@ export default function Person() {
         function(e) {
             alert(e);
         }
-    ), [])
+    )//, [])
     return (
         <>
         <h1>Acount Infos</h1>
