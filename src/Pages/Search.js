@@ -1,21 +1,13 @@
 import React, { useState } from "react";
 import {Button, Tooltip, Space} from "antd";
 import {SearchOutlined} from '@ant-design/icons';
+import axios from 'axios'
 import {
   useHistory,
 } from "react-router-dom";
 
 import {useResult} from "../Pages/Result.js"
 
-function getResult(searchText) {
-    /* TODO */
-
-    return {
-        totPage : 1,
-        page : 1,
-        items : Array(20).fill(searchText)
-    }
-}
 
 export default function Search(props) {
     const [searchText, setSearchText] = useState("");
@@ -28,18 +20,37 @@ export default function Search(props) {
 
     function handleOnClick(event) {
         event.preventDefault();
-        result.updateResult(getResult(searchText));
-        history.push("/Result");
+        var requestjson = {
+            page : 1,
+            searchstring : searchText
+        };
+        console.log(requestjson);
+        var ret;
+        axios.post("/api/search/", requestjson)
+            .then(
+                function(response) {
+                    var data = response.data;
+                    console.log("data.totPage:" + data.data.totPage);
+                    if (data.code === 200) {
+                        ret = data.data;
+                        result.updateResult({
+                            page: 1,
+                            totPage: ret.totPage,
+                            items: ret.topics
+                        })
+                        history.push("/Result");
+                    } 
+                    else {
+                        alert("search error");
+                    }
+                }
+            ).catch(
+                function(error) {
+                    console.log(error);
+                }
+            );
     }
 
-    /*
-    return (
-        <>
-        <h1>Search Page</h1>
-        <input onChange={handleOnChange} value={searchText}/>
-        <button onClick={handleOnClick}> Search </button>
-        </>
-    )*/
     return (
             <>
             <h1>Search Page</h1>

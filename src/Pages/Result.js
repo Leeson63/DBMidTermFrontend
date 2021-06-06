@@ -21,6 +21,8 @@ function useProvideResult() {
     const [result, setResult] = useState({
         totPage : 0,
         page : 0,
+        categories : [],
+        searchstring : "",
         items : Array(20).fill(null)
     });
 
@@ -40,10 +42,18 @@ export default function Result() {
         <li key={i}><Link to={"/TopicPage/"+text.id}>{"title:" + text.title + ", time:" + text.time}</Link></li>
     );
     console.log(result.result);
+    //return (
+    //    <>
+    //    <div>Result Page</div>
+    //    <div>
+    //        Page : {result.result.page}/{result.result.totPage}
+    //    </div>
+    //    <ul>{listItems}</ul>
+    //    </>
+    //)
     return (
         <>
         <div>Result Page</div>
-        <div>Page : {result.result.page}/{result.result.totPage}</div>
         <ul>{listItems}</ul>
         </>
     )

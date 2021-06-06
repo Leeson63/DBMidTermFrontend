@@ -94,6 +94,7 @@ export default function TorrentPage(props) {
         let url = "/api/torrent/" + torrent_id + "/";
         let json = { method : "download"};
         requestServer(url, json);
+        alert("download success!");
     }
 
     return (

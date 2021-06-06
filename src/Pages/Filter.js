@@ -141,7 +141,7 @@ export default function Filter() {
 
     return (
         <reqList.Provider value={req}>
-            <h1 align="center">Filter Page</h1>
+            <h1>Filter Page</h1>
             <Space direction="vertical">
                 <div>
                     <CheckBoxRow textlist={categories} />
