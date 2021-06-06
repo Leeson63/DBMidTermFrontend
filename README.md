@@ -22,7 +22,7 @@
         app.use(
             '/api',
             createProxyMiddleware({
-                target: 'BACKEND_ADDRESS', // change BACKEND_ADDRESS to you backend address
+                target: 'BACKEND_ADDRESS', // change BACKEND_ADDRESS to your backend address
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': '',
@@ -32,7 +32,7 @@
     };
     ```
 
-4.  运行 `yarn start` 启动项目，可以使用 `npm run build` 指令进行打包部署。
+4.  运行 `yarn start` 启动项目，也可以使用 `npm run build` 指令进行打包部署。
 
 ## 后端
 
