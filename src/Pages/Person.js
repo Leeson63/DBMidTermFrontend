@@ -4,23 +4,24 @@ import axios from 'axios'
 export default function Person() {
     const [text, setText] = useState({});
 
-    //useEffect(
-    axios.get("/api/account/")
-    .then (
-        function(response) {
-            var data = response.data;
-            if (data.code === 200) {
-                setText(data.data);
-            } else {
-                alert("error in get user's information");
-            }
+    useEffect(
+        function () {
+            axios.get("/api/account/")
+                .then(
+                    function (response) {
+                        var data = response.data;
+                        if (data.code === 200) {
+                            setText(data.data);
+                        } else {
+                            alert("error in get user's information");
+                        }
+                    })
+                .catch(
+                    function (e) {
+                        alert(e);
+                    })
         }
-    )
-    .catch (
-        function(e) {
-            alert(e);
-        }
-    )//, [])
+    , [])
     return (
         <>
         <h1>Acount Infos</h1>
